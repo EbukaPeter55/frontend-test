@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import SideNavComponent from "./components/SideNav.component.jsx";
+const { Header, Content, Footer, Sider } = Layout;
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const [collapsed, setCollapsed] = useState(false);
+    const {
+        token: { colorBgContainer, borderRadiusLG },
+    } = theme.useToken();
+    return (
+        <Layout
+            style={{
+                minHeight: '100vh',
+            }}
+        >
+            <SideNavComponent/>
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+            <Layout>
+                <Header
+                    style={{
+                        padding: 0,
+                        background: colorBgContainer,
+                    }}
+                />
+                <Content
+                    style={{
+                        margin: '0 16px',
+                    }}
+                >
+                    <Breadcrumb
+                        style={{
+                            margin: '16px 0',
+                        }}
+                    >
+                        <Breadcrumb.Item>User</Breadcrumb.Item>
+                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <div
+                        style={{
+                            padding: 24,
+                            minHeight: 360,
+                            background: colorBgContainer,
+                            borderRadius: borderRadiusLG,
+                        }}
+                    >
+                        Bill is a cat.
+                    </div>
+                </Content>
+                <Footer
+                    style={{
+                        textAlign: 'center',
+                    }}
+                >
+                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
+                </Footer>
+            </Layout>
+        </Layout>
+    );
+};
 
-export default App
+export default App;
