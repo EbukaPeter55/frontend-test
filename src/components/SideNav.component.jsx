@@ -21,9 +21,11 @@ export const items = [
         getItem('Bill', '4'),
         getItem('Alex', '5'),
     ]),
-    getItem('Approvals', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+    getItem('Approvals', 'sub2', <TeamOutlined />,
+        [getItem('Team 1', '6'),
+            getItem('Team 2', '7')]),
     getItem('Audit Trails', '9', <FileOutlined />),
-    getItem('Logout', '9', <FileOutlined />),
+    getItem('Logout', '8', <FileOutlined />),
 
 ];
 

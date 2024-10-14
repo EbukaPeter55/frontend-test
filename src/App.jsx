@@ -1,62 +1,48 @@
 import React, { useState } from 'react';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import SideNavComponent from "./components/SideNav.component.jsx";
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout, theme } from 'antd';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SideNavComponent from './components/SideNav.component.jsx';
+import CardContent from './components/CardContent';
+import { DashboardProvider } from './context/DashboardContext';
+
+const { Header, Content, Footer } = Layout;
 
 const App = () => {
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
-    return (
-        <Layout
-            style={{
-                minHeight: '100vh',
-            }}
-        >
-            <SideNavComponent/>
 
-            <Layout>
-                <Header
-                    style={{
-                        padding: 0,
-                        background: colorBgContainer,
-                    }}
-                />
-                <Content
-                    style={{
-                        margin: '0 16px',
-                    }}
-                >
-                    <Breadcrumb
-                        style={{
-                            margin: '16px 0',
-                        }}
-                    >
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div
-                        style={{
-                            padding: 24,
-                            minHeight: 360,
-                            background: colorBgContainer,
-                            borderRadius: borderRadiusLG,
-                        }}
-                    >
-                        Bill is a cat.
-                    </div>
-                </Content>
-                <Footer
-                    style={{
-                        textAlign: 'center',
-                    }}
-                >
-                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
-                </Footer>
-            </Layout>
-        </Layout>
+    return (
+        <DashboardProvider>
+            <Router>
+                <Layout style={{ minHeight: '100vh' }}>
+                    <SideNavComponent />
+                    <Layout>
+                        <Header style={{ padding: 0, background: colorBgContainer }} />
+                        <Content style={{ margin: '0 16px' }}>
+                            <div
+                                style={{
+                                    padding: 24,
+                                    minHeight: 360,
+                                    background: colorBgContainer,
+                                    borderRadius: borderRadiusLG,
+                                }}
+                            >
+                                <Routes>
+                                    <Route path="/" element={<CardContent />} />
+                                </Routes>
+                            </div>
+                        </Content>
+                        <Footer style={{ textAlign: 'center' }}>
+                            CAMP © {new Date().getFullYear()}
+                        </Footer>
+                    </Layout>
+                </Layout>
+            </Router>
+        </DashboardProvider>
     );
 };
 
 export default App;
+
