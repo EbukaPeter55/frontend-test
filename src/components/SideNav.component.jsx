@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import {items} from "../utils/dashboard.js";
+import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
 
 const { Sider } = Layout;
 
@@ -12,6 +12,20 @@ function getItem(label, key, icon, children) {
         label,
     };
 }
+
+export const items = [
+    getItem('Dashboard', '1', <PieChartOutlined />),
+    getItem('System users', '2', <DesktopOutlined />),
+    getItem('Institutions', 'sub1', <UserOutlined />, [
+        getItem('Tom', '3'),
+        getItem('Bill', '4'),
+        getItem('Alex', '5'),
+    ]),
+    getItem('Approvals', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+    getItem('Audit Trails', '9', <FileOutlined />),
+    getItem('Logout', '9', <FileOutlined />),
+
+];
 
 const SideNavComponent = () => {
     const [collapsed, setCollapsed] = useState(false);
